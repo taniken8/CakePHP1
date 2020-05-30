@@ -1,0 +1,71 @@
+.top-bar {
+	overflow: hidden;
+	height: 100px;
+	margin-bottom: 20px;
+}
+
+.title-area {
+	float: left;
+	padding-top: 20px;
+	padding-left: 30px;
+}
+
+.top-bar-section {
+	float: right;
+	padding-top: 35px;
+	padding-right: 30px;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.actions {
+	width: 800px;
+}
+
+side-nav {
+	background-color: cornsilk;
+}
+
+
+li {
+	list-style: none;
+}
+
+nav.titlebar {
+	background: #99CC33;
+}
+
+.titlebar-name {
+	width: 50%;
+}
+
+h1 {
+	font-size: 1.5rem;
+}
+
+h2 {
+	margin-bottom: 1.5rem;
+}
+
+h3 {
+	margin-bottom: 1.0rem;
+}
+
+table {
+	width: 100%;
+}
+
+table tr th.main {
+	width: 50%;
+}
+
+table tr th.small {
+	width: 25%;
+}
+
+nav.sidebar {
+	background: #f6f6ff;
+}
