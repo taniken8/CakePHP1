@@ -33,8 +33,8 @@ class UsersController extends AppController
 				]
 			],
 			'loginRedirect' => [
-				'controller' => 'Users',
-				'action' => 'login'
+				'controller' => 'Auction',
+				'action' => 'index'
 			],
 			'logoutRedirect' => [
 				'controller' => 'Users',
@@ -62,7 +62,7 @@ class UsersController extends AppController
 	public function logout()
 	{
 		//セッションを破棄
-		$this->request->session()->destroy();
+
 		return $this->redirect($this->Auth->logout());
 	}
 
