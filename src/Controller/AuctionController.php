@@ -22,6 +22,9 @@ class AuctionController extends AuctionBaseController {
 		$this->loadModel('Bidrequests');
 		$this->loadModel('Bidinfo');
 		$this->loadModel('Bidmessages');
+		$this->loadModel('Bidcontacts');
+		$this->loadModel('Bidreviews');
+
 		//ログインしているユーザー情報をauthuserに設定
 		$this->set('authuser', $this->Auth->user());
 		//レイアウトをauctionに変更
@@ -198,4 +201,4 @@ class AuctionController extends AuctionBaseController {
 			'limit' => 10])->toArray();
 		$this->set(compact('biditems'));
 	}
-}
+
