@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateBidmessages extends AbstractMigration
+class CreateBidreviews extends AbstractMigration
 {
     /**
      * Change Method.
@@ -14,8 +14,8 @@ class CreateBidmessages extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('bidmessages');
-        $table->addColumn('bidinfo_id', 'integer', [
+        $table = $this->table('bidreviews');
+        $table->addColumn('review_user_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,
@@ -25,8 +25,14 @@ class CreateBidmessages extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
-        $table->addColumn('message', 'text', [
+        $table->addColumn('rate', 'integer', [
             'default' => null,
+            'limit' => 11,
+            'null' => false,
+        ]);
+        $table->addColumn('comment', 'string', [
+            'default' => null,
+            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [

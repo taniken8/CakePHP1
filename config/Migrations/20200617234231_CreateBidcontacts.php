@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateBiditems extends AbstractMigration
+class CreateBidcontacts extends AbstractMigration
 {
     /**
      * Change Method.
@@ -14,22 +14,37 @@ class CreateBiditems extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('biditems');
+        $table = $this->table('bidcontacts');
+        $table->addColumn('bidinfo_id', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => false,
+        ]);
         $table->addColumn('user_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,
         ]);
-        $table->addColumn('name', 'string', [
+        $table->addColumn('zip', 'string', [
             'default' => null,
-            'limit' => 100,
+            'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('finished', 'boolean', [
+        $table->addColumn('address', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
+        $table->addColumn('phone_number', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
+        $table->addColumn('send', 'boolean', [
             'default' => null,
             'null' => false,
         ]);
-        $table->addColumn('endtime', 'datetime', [
+        $table->addColumn('receipt', 'boolean', [
             'default' => null,
             'null' => false,
         ]);
