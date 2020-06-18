@@ -10,7 +10,7 @@ namespace App\Controller;
  *
  * @method \App\Model\Entity\Bidreview[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class BidreviewsController extends AppController
+class BidreviewsController extends AuctionBaseController
 {
     /**
      * Index method
