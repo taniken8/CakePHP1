@@ -30,7 +30,8 @@ class Bidreview extends Entity
      * @var array
      */
     protected $_accessible = [
-        'review_user_id' => true,
+		'bidinfo_id' => true,
+		'review_user_id' => true,
         'user_id' => true,
         'rate' => true,
         'comment' => true,

@@ -48,7 +48,7 @@ class BidcontactsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Bidinfos', [
+        $this->belongsTo('Bidinfo', [
             'foreignKey' => 'bidinfo_id',
             'joinType' => 'INNER',
         ]);
@@ -74,19 +74,21 @@ class BidcontactsTable extends Table
             ->scalar('zip')
             ->maxLength('zip', 255)
             ->requirePresence('zip', 'create')
-            ->notEmptyString('zip');
+			->notEmptyString('zip', '郵便番号を入力してください')
+
 
         $validator
             ->scalar('address')
             ->maxLength('address', 255)
             ->requirePresence('address', 'create')
-            ->notEmptyString('address');
+            ->notEmptyString('address', '住所を入力してください');
 
         $validator
             ->scalar('phone_number')
             ->maxLength('phone_number', 255)
             ->requirePresence('phone_number', 'create')
-            ->notEmptyString('phone_number');
+			->notEmptyString('phone_number', '電話番号を入力してください')
+
 
         $validator
             ->boolean('send')
@@ -99,7 +101,9 @@ class BidcontactsTable extends Table
             ->notEmptyString('receipt');
 
         return $validator;
-    }
+	}
+
+
 
     /**
      * Returns a rules checker object that will be used for validating
@@ -110,7 +114,7 @@ class BidcontactsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['bidinfo_id'], 'Bidinfos'));
+        $rules->add($rules->existsIn(['bidinfo_id'], 'Bidinfo'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;

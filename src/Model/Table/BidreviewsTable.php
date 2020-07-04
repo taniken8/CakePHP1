@@ -48,8 +48,8 @@ class BidreviewsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('ReviewUsers', [
-            'foreignKey' => 'review_user_id',
+        $this->belongsTo('Bidinfo', [
+            'foreignKey' => 'bidinfo_id',
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Users', [
@@ -93,7 +93,7 @@ class BidreviewsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['review_user_id'], 'ReviewUsers'));
+
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
