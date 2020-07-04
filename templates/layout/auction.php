@@ -39,6 +39,7 @@
 				<li><?=$this->Html->link(__('あなたの出品情報'), ['action'=>'home2']) ?></li>
 				<li><?=$this->Html->link(__('商品を出品する'), ['action'=>'add']) ?></li>
 				<li><?=$this->Html->link(__('商品リストを見る'), ['action'=>'index']) ?></li>
+				<li><?=$this->Html->link(__('ユーザーページへ'), ['controller'=>'users', 'action'=>'view', $authuser['id']]) ?></li>
 				<li><?=$this->Html->link(__('ログアウト'),
 				['action' => 'logout']) ?></li>
 			</ul>

@@ -70,18 +70,18 @@ class UsersController extends AppController
 	public function beforeFilter(EventInterface $event)
 	{
 		parent::beforeFilter($event);
-		$this->Auth->allow(['login']);
+		$this->Auth->allow(['login', 'view']);
 	}
 
 	//認証時のロールチェック
 	public function isAuthorized($user = null)
 	{
 		//管理者はtrue
-		if ($user['role'] === 'admin') {
+		if ($user['role'] === 1) {
 			return true;
 		}
 		//一般ユーザーはfalse
-		if ($user['role'] === 'user') {
+		if ($user['role'] === 0) {
 			return false;
 		}
 		//他はすべてfalse
@@ -110,7 +110,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Bidinfo', 'Biditems', 'Bidmessages', 'Bidrequests'],
+            'contain' => ['Bidinfo', 'Biditems', 'Bidmessages', 'Bidrequests', 'Bidcontacts', 'Bidreviews'],
         ]);
 
         $this->set('user', $user);
