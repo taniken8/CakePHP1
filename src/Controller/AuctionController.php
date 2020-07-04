@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 use Cake\Event\EventInterface;
+// use Cake\ORM\TableRegistry;
 use Exception;
 
 class AuctionController extends AuctionBaseController {
@@ -11,11 +12,13 @@ class AuctionController extends AuctionBaseController {
 	//デフォルトテーブルを使わない
 	public $useTable = false;
 
+
 	//初期化処理
 	public function initialize():void
 	{
 		parent::initialize();
 		$this->loadComponent('Paginator');
+		$this->loadComponent('Common');
 		//必要なモデルをすべてロード
 		$this->loadModel('Users');
 		$this->loadModel('Biditems');
@@ -202,3 +205,71 @@ class AuctionController extends AuctionBaseController {
 		$this->set(compact('biditems'));
 	}
 
+	//取引画面の表示
+	public function contact($id = null)
+	{
+		//Bidinfo(落札商品)の$idを取得
+		$bidinfo = $this->Bidinfo->get($id, [
+			'contain' => ['Users', 'Biditems', 'Bidcontacts', 'Bidreviews']
+		]);
+
+		// $isUser = if ($bidinfo->user_id === $this->Auth->user('id')){
+		// 	<p>ログインユーザーです</p>
+		// }
+
+		//BidContactsを新たに用意
+		$bidcontact = $this->Bidcontacts->newEmptyEntity();
+		//連絡先送信時の処理
+		if (isset($_POST['contact'])) {
+			//送信されたフォームで$bidcontactを更新
+			$bidcontact = $this->Bidcontacts->patchEntity($bidcontact, $this->request->getData());
+			//Bidcontactsに保存
+			if ($this->Bidcontacts->save($bidcontact)) {
+				$this->Flash->success(__('保存しました。'));
+			} else {
+				$this->Flash->error(__('保存に失敗しました。もう一度入力下さい。'));
+				debug($this->User->validationErrors);
+			}
+			return $this->redirect(['action' => 'contact', $id]);
+		}
+
+
+		//送信ボタンが押された時の処理
+		if (isset($_POST['send'])) {
+			$bidinfo_id = $this->request->getData('id');
+			$bidcontact = $this->Bidcontacts->get($bidinfo_id);
+			$bidcontact->send = 1;
+			$this->Bidcontacts->save($bidcontact);
+			return $this->redirect(['action' => 'contact', $id]);
+		}
+
+		//受取ボタンが押された時の処理
+		if (isset($_POST['receipt'])) {
+			$bidinfo_id = $this->request->getData('id');
+			$bidcontact = $this->Bidcontacts->get($bidinfo_id);
+			$bidcontact->receipt = 1;
+			$this->Bidcontacts->save($bidcontact);
+			return $this->redirect(['action' => 'contact', $id]);
+		}
+
+		//Bidreviewsを新たに用意
+		$bidreview = $this->Bidreviews->newEmptyEntity();
+		//連絡先送信時の処理
+		if (isset($_POST['review'])) {
+			//送信されたフォームで$bidreviewを更新
+			$bidreview = $this->Bidreviews->patchEntity($bidreview, $this->request->getData());
+			//Bidreviewsに保存
+			if ($this->Bidreviews->save($bidreview)) {
+				$this->Flash->success(__('保存しました。'));
+			} else {
+				$this->Flash->error(__('保存に失敗しました。もう一度入力下さい。'));
+			}
+			return $this->redirect(['action' => 'contact', $id]);
+		}
+
+		//値を保管
+		$this->set(compact('bidcontact', 'bidinfo', 'bidreview'));
+	}
+
+
+}
