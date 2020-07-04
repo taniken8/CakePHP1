@@ -28,8 +28,10 @@
 	<?php else: ?>
 		<tr><td colspan="3">※メッセージがまだありません。</td></tr>
 	<?php endif; ?>
+
 </tbody>
 </table>
 <?php else: ?>
 <h2>※落札情報はありません。</h2>
 <?php endif; ?>
+<?=$this->Html->link(__('<<取引に進む>>'), ['action'=>'contact', $bidinfo->id]) ?>
