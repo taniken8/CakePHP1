@@ -228,7 +228,6 @@ class AuctionController extends AuctionBaseController {
 				$this->Flash->success(__('保存しました。'));
 			} else {
 				$this->Flash->error(__('保存に失敗しました。もう一度入力下さい。'));
-				debug($this->User->validationErrors);
 			}
 			return $this->redirect(['action' => 'contact', $id]);
 		}
