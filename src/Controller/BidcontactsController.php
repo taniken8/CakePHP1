@@ -48,7 +48,7 @@ class BidcontactsController extends AuctionBaseController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function create()
     {
         $bidcontact = $this->Bidcontacts->newEmptyEntity();
         if ($this->request->is('post')) {
