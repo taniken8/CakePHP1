@@ -237,12 +237,12 @@ class AuctionController extends AuctionBaseController {
             }
 			return $this->redirect(['action' => 'contact', $id]);
 		}
-		$this->set(compact('bidcontact', 'bidinfo', 'isContact', 'isSend', 'isReceipt', 'isReview', 'isFinish'));
+		$this->set(compact('bidcontact', 'bidinfo', 'isContact', 'isShipping', 'isReceipt', 'isReview', 'isFinish'));
 	}
 
-	public function send()
+	public function shipping()
 	{
-		//contactで送信ボタンが押された時の処理
+		//contactで発送ボタンが押された時の処理
 		if ($this->request->is('post')) {
 			$id = $this->request->getData('id');
 			$bidinfo_id = $this->request->getData('bidinfo_id');
