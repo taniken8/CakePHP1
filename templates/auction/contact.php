@@ -1,7 +1,7 @@
 <h2>取引をする</h2>
 <!-- ログインユーザーが落札者であれば -->
 <?php if ($bidinfo->user_id === $authuser['id']): ?>
-	<?=$this->element('successfulbidder_contact', ['bidcontact' => $bidcontact, 'bidinfo' => $bidinfo, 'isContact' => $isContact, 'isSend' => $isSend, 'isReceipt' => $isReceipt, 'isReview' => $isReview, 'isFinish' => $isFinish]) ?>
+	<?=$this->element('successfulbidder_contact', ['bidcontact' => $bidcontact, 'bidinfo' => $bidinfo, 'isContact' => $isContact, 'isShippig' => $isShipping, 'isReceipt' => $isReceipt, 'isReview' => $isReview, 'isFinish' => $isFinish]) ?>
 <?php endif; ?>
 
 <!-- ログインユーザーが出品者であれば -->
