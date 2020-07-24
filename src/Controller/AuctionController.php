@@ -274,10 +274,10 @@ class AuctionController extends AuctionBaseController {
 
 	public function review()
 	{
-		//Bidreviewsを新たに用意
-		$bidreview = $this->Bidreviews->newEmptyEntity();
 		//評価送信時の処理
 		if ($this->request->is('post')) {
+			//Bidreviewsを新たに用意
+			$bidreview = $this->Bidreviews->newEmptyEntity();
 			//送信されたフォームで$bidreviewを更新
 			$bidreview = $this->Bidreviews->patchEntity($bidreview, $this->request->getData());
 			$bidinfo_id = $this->request->getData('bidinfo_id');
