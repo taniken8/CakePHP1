@@ -42,13 +42,13 @@ class AuctionController extends AuctionBaseController {
 			'order' => ['endtime'=>'desc'],
 			'limit' => 5]);
 
-		$bidreviews = $this->Bidreviews->find('all',
-		['conditions' => ['review_user_id' => $this->Auth->user('id')
-		]])
-		->contain(['Users']);
+		$bidreviews = $this->Bidreviews
+			->find('all',['conditions' => ['review_user_id' => $this->Auth->user('id')]])
+			->contain(['Users']);
 
-		$bidreviewsAvg = $this->Bidreviews->find()
-		->where(['review_user_id' => $this->Auth->user('id')])->avg('rate');
+		$bidreviewsAvg = $this->Bidreviews
+			->find()
+			->where(['review_user_id' => $this->Auth->user('id')])->avg('rate');
 
 		$this->set(compact('auction', 'bidreviews', 'bidreviewsAvg'));
 	}
@@ -71,10 +71,13 @@ class AuctionController extends AuctionBaseController {
 			//Bidinfoのbiditem_idに$idを設定
 			$bidinfo->biditem_id = $id;
 			//最高金額のBidrequest（入札情報）を検索
-			$bidrequest = $this->Bidrequests->find('all', [
-				'conditions' => ['biditem_id' => $id],
-				'contain' => ['Users'],
-				'order' => ['price' => 'desc']])->first();
+			$bidrequest = $this->Bidrequests
+				->find('all', [
+					'conditions' => ['biditem_id' => $id],
+					'contain' => ['Users'],
+					'order' => ['price' => 'desc']
+					])
+				->first();
 			//Bidrequestが得られた時の処理
 			if (!empty($bidrequest)) {
 				//Bidinfo（落札情報）の各種プロパティを設定して保存
@@ -88,10 +91,12 @@ class AuctionController extends AuctionBaseController {
 			$biditem->bidinfo = $bidinfo;
 		}
 		//BIdrequestsからbiditem_idが$idのものを取得
-		$bidrequests = $this->Bidrequests->find('all', [
-			'conditions' => ['biditem_id'=>$id],
-			'contain' => ['Users'],
-			'order' => ['price'=>'desc']])->toArray();
+		$bidrequests = $this->Bidrequests
+			->find('all', [
+				'conditions' => ['biditem_id'=>$id],
+				'contain' => ['Users'],
+				'order' => ['price'=>'desc']])
+			->toArray();
 		//オブジェクト類をテンプレート用に設定
 		$this->set(compact('biditem', 'bidrequests'));
 	}
@@ -183,10 +188,12 @@ class AuctionController extends AuctionBaseController {
 			$bidinfo = null;
 		}
 		//Bidmessageをbidinfo_idとuser_idで検索
-		$bidmsgs = $this->Bidmessages->find('all', [
-			'conditions' => ['bidinfo_id'=>$bidinfo_id],
-			'contain' => ['Users'],
-			'order' => ['created'=>'desc']]);
+		$bidmsgs = $this->Bidmessages
+			->find('all', [
+				'conditions' => ['bidinfo_id'=>$bidinfo_id],
+				'contain' => ['Users'],
+				'order' => ['created'=>'desc']
+				]);
 		$this->set(compact('bidmsgs', 'bidinfo', 'bidmsg'));
 	}
 
