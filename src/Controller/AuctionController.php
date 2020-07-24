@@ -250,6 +250,9 @@ class AuctionController extends AuctionBaseController {
 			$bidcontact->send = 1;
 			$this->Bidcontacts->save($bidcontact);
 			return $this->redirect(['action' => 'contact', $bidinfo_id]);
+		} else {
+			//失敗時のメッセージ
+			$this->Flash->error(__('保存に失敗しました。もう一度お試しください。'));
 		}
 	}
 
@@ -263,8 +266,11 @@ class AuctionController extends AuctionBaseController {
 			$bidcontact->receipt = 1;
 			$this->Bidcontacts->save($bidcontact);
 			return $this->redirect(['action' => 'contact', $bidinfo_id]);
+		} else {
+			//失敗時のメッセージ
+			$this->Flash->error(__('保存に失敗しました。もう一度お試しください。'));
 		}
-		}
+	}
 
 	public function review()
 	{
