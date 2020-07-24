@@ -21,11 +21,11 @@ class CommonComponent extends Component
 
 
 
-    public function initialize(array $config): void
-    {
+	public function initialize(array $config): void
+	{
 		$this->controller = $this->_registry->getController();
 		$this->controller->loadModel('Auction');
-    }
+	}
 
 	//連絡先を送っているかどうか
 	public function isContact($id)
