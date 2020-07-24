@@ -83,8 +83,9 @@ class BidcontactsController extends AuctionBaseController
                 $this->Flash->success(__('The bidcontact has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The bidcontact could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The bidcontact could not be saved. Please, try again.'));
         }
         $bidinfos = $this->Bidcontacts->Bidinfos->find('list', ['limit' => 200]);
         $users = $this->Bidcontacts->Users->find('list', ['limit' => 200]);
