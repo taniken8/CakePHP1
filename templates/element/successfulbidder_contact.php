@@ -18,7 +18,7 @@
 	<?php endif; ?>
 
 	<!-- 発送ボタンをおしていなければ -->
-	<?php if ($isSend): ?>
+	<?php if ($isShipping): ?>
 		<p>商品が発送されるまでお待ちください。</p>
 	<?php endif; ?>
 

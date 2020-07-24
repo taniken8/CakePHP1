@@ -5,7 +5,7 @@
 		<?php endif; ?>
 
 		<!-- 発送ボタンを押していれば -->
-		<?php if ($isSend): ?>
+		<?php if ($isShipping): ?>
 			<p>落札者の連絡先です。商品の発送が完了したら、「発送ボタン」を押してください。</p>
 			<table class="vertical-table">
 			<tr>
@@ -29,7 +29,7 @@
 				echo $this->Form->create($bidcontact,
 				['type' => 'post',
 				'url' => ['controller' => 'Auction',
-				'action' => 'send']]);
+				'action' => 'shipping']]);
 				echo $this->Form->hidden('id', ['value' => $bidinfo->bidcontact->id]);
 				echo $this->Form->hidden('bidinfo_id', ['value' => $bidinfo->bidcontact->bidinfo_id]);
 				echo $this->Form->button('発送', ['type' => 'submit']);

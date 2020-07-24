@@ -6,5 +6,5 @@
 
 <!-- ログインユーザーが出品者であれば -->
 <?php if ($bidinfo->biditem->user_id === $authuser['id']): ?>
-	<?=$this->element('bidder_contact', ['bidcontact' => $bidcontact, 'bidinfo' => $bidinfo, 'isContact' => $isContact, 'isSend' => $isSend, 'isReceipt' => $isReceipt, 'isReview' => $isReview, 'isFinish' => $isFinish]) ?>
+	<?=$this->element('bidder_contact', ['bidcontact' => $bidcontact, 'bidinfo' => $bidinfo, 'isContact' => $isContact, 'isSend' => $isShipping, 'isReceipt' => $isReceipt, 'isReview' => $isReview, 'isFinish' => $isFinish]) ?>
 <?php endif; ?>
