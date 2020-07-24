@@ -240,7 +240,7 @@ class AuctionController extends AuctionBaseController {
 			if ($this->Bidcontacts->save($bidcontact)) {
 				$this->Flash->success(__('保存しました。'));
 			} else {
-                $this->Flash->error(__('保存に失敗しました。もう一度入力下さい。'));
+				$this->Flash->error(__('保存に失敗しました。もう一度入力下さい。')	);
             }
 			return $this->redirect(['action' => 'contact', $id]);
 		}
