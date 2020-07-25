@@ -76,11 +76,11 @@ class BidcontactsTable extends Table
 			->requirePresence('zip', 'create')
 			->notEmptyString('zip', '郵便番号を入力してください')
 			->add('zip', 'custom',[
-					'message' => '〒○○○-○○○○の形式で入力してください',
-					'rule' => function ($value, $context) {
-						return (bool) preg_match('/^([0-9]{3})(-[0-9]{4})?$/i', $value);
-					}
-				]);
+				'message' => '〒○○○-○○○○の形式で入力してください',
+				'rule' => function ($value, $context) {
+					return (bool) preg_match('/^([0-9]{3})(-[0-9]{4})?$/i', $value);
+				}
+			]);
 
         $validator
             ->scalar('address')
