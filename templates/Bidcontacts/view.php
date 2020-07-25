@@ -20,7 +20,13 @@
             <table>
                 <tr>
                     <th><?= __('User') ?></th>
-                    <td><?= $bidcontact->has('user') ? $this->Html->link($bidcontact->user->id, ['controller' => 'Users', 'action' => 'view', $bidcontact->user->id]) : '' ?></td>
+                    <td>
+						<?php if ($bidcontact->has('user')) {
+							echo $this->Html->link($bidcontact->user->id, ['controller' => 'Users', 'action' => 'view', $bidcontact->user->id]);
+						} else {
+							'';
+						} ?>
+					</td>
                 </tr>
                 <tr>
                     <th><?= __('Zip') ?></th>
