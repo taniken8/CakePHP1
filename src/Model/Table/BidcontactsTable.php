@@ -70,9 +70,9 @@ class BidcontactsTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
 
-        $validator
-            ->scalar('zip')
-            ->maxLength('zip', 255)
+		$validator
+			->scalar('zip')
+			->maxLength('zip', 255)
 			->requirePresence('zip', 'create')
 			->notEmptyString('zip', '郵便番号を入力してください')
 			->add('zip', 'custom',[
