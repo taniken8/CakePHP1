@@ -73,7 +73,7 @@ class BidcontactsTable extends Table
         $validator
             ->scalar('zip')
             ->maxLength('zip', 255)
-            ->requirePresence('zip', 'create')
+			->requirePresence('zip', 'create')
 			->notEmptyString('zip', '郵便番号を入力してください')
 			->add('zip', 'custom',[
 					'message' => '〒○○○-○○○○の形式で入力してください',
