@@ -41,7 +41,7 @@ class CommonComponent extends Component
 	}
 
 	//発送ボタンを押したかどうか
-	public function isSend($id)
+	public function isShipping($id)
 	{
 		$bidinfo = $this->controller->Bidinfo->get($id, [
 			'contain' => ['Bidcontacts']]);
@@ -63,16 +63,18 @@ class CommonComponent extends Component
 		$bidinfo = $this->controller->Bidinfo->get($id, [
 			'contain' => ['Bidcontacts']]);
 
+		$bidcontact = $bidinfo->bidcontact;
+
 		//連絡先を送っていなければfalse
-		if (!$bidinfo->bidcontact) {
+		if (!$bidcontact) {
 			return false;
 		}
 		//発送ボタンが押されていなければfalse
-		if (!$bidinfo->bidcontact->send) {
+		if (!$bidcontact->send) {
 			return false;
 		}
 		//受取ボタンが押されていればfalse
-		if ($bidinfo->bidcontact->receipt) {
+		if ($bidcontact->receipt) {
 			return false;
 		}
 		return true;
@@ -90,16 +92,18 @@ class CommonComponent extends Component
 				'user_id' => $this->controller->Auth->user('id')
 		]]]);
 
+		$bidcontact = $bidinfo->bidcontact;
+
 		//連絡先を送っていなければfalse
-		if (!$bidinfo->bidcontact) {
+		if (!$bidcontact) {
 			return false;
 		}
 		//発送ボタンが押されていなければfalse
-		if (!$bidinfo->bidcontact->send) {
+		if (!$bidcontact->send) {
 			return false;
 		}
 		//受取ボタンを押されていなければfalse
-		if (!$bidinfo->bidcontact->receipt) {
+		if (!$bidcontact->receipt) {
 			return false;
 		}
 		//ログインユーザーが評価していればfalse
@@ -121,16 +125,18 @@ class CommonComponent extends Component
 				'user_id' => $this->controller->Auth->user('id')
 		]]]);
 
+		$bidcontact = $bidinfo->bidcontact;
+
 		//連絡先を送っていなければfalse
-		if (!$bidinfo->bidcontact) {
+		if (!$bidcontact) {
 			return false;
 		}
 		//発送ボタンが押されていなければfalse
-		if (!$bidinfo->bidcontact->send) {
+		if (!$bidcontact->send) {
 			return false;
 		}
 		//受取ボタンを押されていなければfalse
-		if (!$bidinfo->bidcontact->receipt) {
+		if (!$bidcontact->receipt) {
 			return false;
 		}
 		//ログインユーザーが評価されていなければfalse
