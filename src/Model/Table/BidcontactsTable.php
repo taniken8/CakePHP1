@@ -70,17 +70,17 @@ class BidcontactsTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
 
-		$validator
-			->scalar('zip')
-			->maxLength('zip', 255)
-			->requirePresence('zip', 'create')
-			->notEmptyString('zip', '郵便番号を入力してください')
-			->add('zip', 'custom',[
-				'message' => '〒○○○-○○○○の形式で入力してください',
-				'rule' => function ($value, $context) {
-					return (bool) preg_match('/^([0-9]{3})(-[0-9]{4})?$/i', $value);
-				}
-			]);
+        $validator
+            ->scalar('zip')
+            ->maxLength('zip', 255)
+            ->requirePresence('zip', 'create')
+            ->notEmptyString('zip', '郵便番号を入力してください')
+            ->add('zip', 'custom',[
+                'message' => '〒○○○-○○○○の形式で入力してください',
+                'rule' => function ($value, $context) {
+                    return (bool) preg_match('/^([0-9]{3})(-[0-9]{4})?$/i', $value);
+                }
+            ]);
 
         $validator
             ->scalar('address')
@@ -92,13 +92,13 @@ class BidcontactsTable extends Table
             ->scalar('phone_number')
             ->maxLength('phone_number', 255)
             ->requirePresence('phone_number', 'create')
-			->notEmptyString('phone_number', '電話番号を入力してください')
-			->add('phone_number', 'custom', [
-				'message' => '000-1111-2222の形式で入力してください',
-				'rule' => function ($value) {
-					return (bool) preg_match('/^0\d{2,3}-\d{1,4}-\d{4}$/', $value);
-				}
-			]);
+            ->notEmptyString('phone_number', '電話番号を入力してください')
+            ->add('phone_number', 'custom', [
+                'message' => '000-1111-2222の形式で入力してください',
+                'rule' => function ($value) {
+                    return (bool) preg_match('/^0\d{2,3}-\d{1,4}-\d{4}$/', $value);
+                }
+            ]);
 
         $validator
             ->boolean('send')
@@ -111,7 +111,7 @@ class BidcontactsTable extends Table
             ->notEmptyString('receipt');
 
         return $validator;
-	}
+    }
 
 
 
