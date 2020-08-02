@@ -16,7 +16,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="users view content">
-            <h3><?= h($user->id) ?></h3>
+            <h3><?= h($user->username) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Username') ?></th>
@@ -161,6 +161,47 @@
                 </div>
                 <?php endif; ?>
             </div>
+
+			<div class="related">
+                <h4><?= __('Bidreviews') ?></h4>
+                <?php if (!empty($user->bidreviews)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('評価したユーザー') ?></th>
+							<th><?= __('Rate') ?></th>
+							<th><?= __('Comment') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($user->bidreviews as $bidreviews) : ?>
+                        <tr>
+                            <td><?= h($bidreviews->review_user_id) ?></td>
+                            <td><?= h($bidreviews->rate) ?></td>
+							<td><?= h($bidreviews->comment) ?></td>
+                            <td><?= h($bidreviews->created) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'Bidreviews', 'action' => 'view', $bidreviews->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Bidreviews', 'action' => 'edit', $bidreviews->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Bidreviews', 'action' => 'delete', $bidreviews->id], ['confirm' => __('Are you sure you want to delete # {0}?', $bidreviews->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+					<div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('ユーザー評価の平均') ?></th>
+                        </tr>
+						<tr>
+							<!-- 評価の平均をここに表示 -->
+							<td><?= h($bidreviews->comment) ?></td>
+                        </tr>
+                </div>
+                <?php endif; ?>
+            </div>
+
+
         </div>
     </div>
 </div>

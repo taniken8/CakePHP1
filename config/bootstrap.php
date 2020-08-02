@@ -214,3 +214,6 @@ ServerRequest::addDetector('tablet', function ($request) {
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
+//ユーザー定数で使用する値を準備
+define("admin",1);
+define("user", 0);

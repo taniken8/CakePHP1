@@ -57,7 +57,15 @@ class UsersTable extends Table
         ]);
         $this->hasMany('Bidrequests', [
             'foreignKey' => 'user_id',
+		]);
+		//機能実装（課題２）に伴うアソシエーションの追加
+		$this->hasMany('Bidcontacts', [
+            'foreignKey' => 'user_id',
         ]);
+		//機能実装（課題２）に伴うアソシエーションの追加
+		$this->hasMany('Bidreviews', [
+			'foreignKey' => 'user_id',
+		]);
     }
 
     /**

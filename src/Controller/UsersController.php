@@ -13,6 +13,8 @@ namespace App\Controller;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Event\EventInterface;
+use Cake\Core\Configure;
+
 
 class UsersController extends AppController
 {
@@ -62,7 +64,7 @@ class UsersController extends AppController
 	public function logout()
 	{
 		//セッションを破棄
-
+		$this->Flash->success('ログアウトしました');
 		return $this->redirect($this->Auth->logout());
 	}
 
@@ -77,14 +79,15 @@ class UsersController extends AppController
 	public function isAuthorized($user = null)
 	{
 		//管理者はtrue
-		if ($user['role'] === 'admin') {
+		if ($user['role'] === admin) {
 			return true;
 		}
-		//一般ユーザーはfalse
-		if ($user['role'] === 'user') {
-			return false;
+
+		//一般ユーザーはUsersControllerのみtrue、他はfalse
+		if ($user['role'] === user) {
+				return false;
 		}
-		//他はすべてfalse
+		//その他はすべてfalse
 		return false;
 	}
 
@@ -110,10 +113,10 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Bidinfo', 'Biditems', 'Bidmessages', 'Bidrequests'],
+            'contain' => ['Bidinfo', 'Biditems', 'Bidmessages', 'Bidrequests', 'Bidcontacts', 'Bidreviews'],
         ]);
 
-        $this->set('user', $user);
+        $this->set(compact('user', 'bidreviews', 'bidreviewsAvg'));
     }
 
     /**
