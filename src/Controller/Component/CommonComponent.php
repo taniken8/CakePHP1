@@ -85,12 +85,12 @@ class CommonComponent extends Component
 	{
 		$bidinfo = $this->controller->Bidinfo->get($id, [
 			'contain' => ['Bidcontacts']]);
-		$bidreview = $this->controller->Bidreviews->find('all',
-			['conditions' => [
-				'and' => [
-				'bidinfo_id' => $id,
-				'user_id' => $this->controller->Auth->user('id')
-		]]]);
+        $bidreview = $this->controller->Bidreviews->find()
+            ->where([
+                'bidinfo_id' => $id,
+                'user_id' => $this->controller->Auth->user('id')
+            ])
+            ->count();
 
 		$bidcontact = $bidinfo->bidcontact;
 
@@ -107,7 +107,7 @@ class CommonComponent extends Component
 			return false;
 		}
 		//ログインユーザーが評価していればfalse
-		if ($bidreview->toArray()) {
+		if ($bidreview === 1) {
 			return false;
 		}
 		return true;
@@ -118,12 +118,12 @@ class CommonComponent extends Component
 	{
 		$bidinfo = $this->controller->Bidinfo->get($id, [
 			'contain' => ['Bidcontacts']]);
-		$bidreview = $this->controller->Bidreviews->find('all',
-			['conditions' => [
-				'and' => [
-				'bidinfo_id' => $id,
-				'user_id' => $this->controller->Auth->user('id')
-		]]]);
+        $bidreview = $this->controller->Bidreviews->find()
+            ->where([
+                'bidinfo_id' => $id,
+                'user_id' => $this->controller->Auth->user('id')
+            ])
+            ->count();
 
 		$bidcontact = $bidinfo->bidcontact;
 
@@ -140,7 +140,7 @@ class CommonComponent extends Component
 			return false;
 		}
 		//ログインユーザーが評価されていなければfalse
-		if (!$bidreview->toArray()) {
+		if (!$bidreview === 1) {
 			return false;
 		}
 		return true;
