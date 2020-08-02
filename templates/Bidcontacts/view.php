@@ -21,12 +21,12 @@
                 <tr>
                     <th><?= __('User') ?></th>
                     <td>
-						<?php if ($bidcontact->has('user')) {
-							echo $this->Html->link($bidcontact->user->id, ['controller' => 'Users', 'action' => 'view', $bidcontact->user->id]);
-						} else {
-							'';
-						} ?>
-					</td>
+                        <?php if ($bidcontact->has('user')) {
+                            echo $this->Html->link($bidcontact->user->id, ['controller' => 'Users', 'action' => 'view', $bidcontact->user->id]);
+                        } else {
+                            '';
+                        } ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Zip') ?></th>
